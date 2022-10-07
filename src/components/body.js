@@ -21,6 +21,9 @@ export default function Body() {
                         <h2>Frozen Store</h2>
                     </Image>
                 </div>
+                <div style={{position:"absolute",top:"2rem"}}>
+                    <h3 style={{fontSize:30}}>Flavour Managment</h3>
+                </div>
                 <div className="text" style={{ marginLeft: 8 }}>
                     <h1>How it works?</h1>
                     <p>Just upload the video and it will provide you All the video details and its metadata.</p>
