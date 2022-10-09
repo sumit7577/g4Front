@@ -1,10 +1,12 @@
-const url = "http://167.99.197.49/"
 const debugUrl = "http://127.0.0.1:8000/";
 
-const edit = async (fileData) => {
+const edit = async (fileData,language,id,flavour) => {
     let formData = new FormData();
     formData.append("file", fileData);
-    const data = await fetch(url+"edit", {
+    formData.append("id",id);
+    formData.append("language",language);
+    formData.append("flavour",flavour)
+    const data = await fetch(debugUrl+"edit", {
         method: 'POST',
         body: formData,
 
@@ -14,7 +16,7 @@ const edit = async (fileData) => {
 }
 
 const home = async()=>{
-    const resp = await fetch(url);
+    const resp = await fetch(debugUrl);
     const data = await resp.json();
     return data;
 }

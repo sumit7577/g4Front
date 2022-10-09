@@ -36,6 +36,18 @@ const MainDiv = styled("div")(({ theme }) => ({
 
 export default function Upload() {
   const uploadRef = useRef(null);
+  const [homeResp, setHomeResp] = useState(() => {
+    return [];
+  });
+  const [id, setId] = useState(() => {
+    return null;
+  });
+  const [flavour, setFlavour] = useState(() => {
+    return null;
+  });
+  const [language, setLanguage] = useState(() => {
+    return null;
+  })
   React.useEffect(() => {
     (async () => {
       try {
@@ -51,16 +63,12 @@ export default function Upload() {
     })();
   }, []);
 
-  const [homeResp, setHomeResp] = useState(() => {
-    return [];
-  });
-
   const Upload = () => {
-    if (fileName !== "") {
+    if (fileName !== "" && flavour!= null && language !=null && id != null) {
       setUpload(true);
       (async () => {
         try {
-          const response = await edit(fileName);
+          const response = await edit(fileName,language,id,flavour);
           console.log(response);
           setUpload(false);
           setResp(response);
@@ -80,8 +88,6 @@ export default function Upload() {
     return null;
   });
   const [upload, setUpload] = useState(false);
-
-  const handleChange = (event) => {};
   return (
     <MainDiv>
       <div className="contaminent">
@@ -102,7 +108,11 @@ export default function Upload() {
                   select
                   label="Select"
                   value={homeResp[0]?.Flavour}
-                  onChange={handleChange}
+                  onChange={(event) => {
+                    setId(() => {
+                      return event.target.value;
+                    })
+                  }}
                   helperText="Please select your Video Flavour Id"
                   sx={{ mt: 2 }}
                 >
@@ -119,7 +129,11 @@ export default function Upload() {
                   label="Select"
                   value={homeResp[0]?.Flavour}
                   sx={{ mt: 2 }}
-                  onChange={handleChange}
+                  onChange={(event) => {
+                    setFlavour(() => {
+                      return event.target.value;
+                    })
+                  }}
                   helperText="Please select your Video Flavour"
                 >
                   {homeResp[0]?.Flavour.map((data) => (
@@ -135,7 +149,11 @@ export default function Upload() {
                   sx={{ mt: 2 }}
                   label="Select"
                   value={homeResp[0]?.Languages}
-                  onChange={handleChange}
+                  onChange={(event) => {
+                    setLanguage(() => {
+                      return event.target.value;
+                    })
+                  }}
                   helperText="Please select your Video Language"
                 >
                   {homeResp[0]?.Languages.map((data, index) => (
@@ -196,7 +214,7 @@ export default function Upload() {
                           color: "#2196f3",
                         }}
                       >
-                       {fileName.name}
+                        {fileName.name}
                         <UploadIcon
                           sx={{ pr: 1, fontSize: 15, mt: 1, marginLeft: 0.5 }}
                         />
