@@ -1,4 +1,4 @@
-const debugUrl = "http://127.0.0.1:8000/";
+const debugUrl = "http://20.77.80.217/";
 
 const edit = async (fileData,language,id,flavour) => {
     let formData = new FormData();
