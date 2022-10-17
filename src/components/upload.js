@@ -22,15 +22,11 @@ const ColorButton = styled(Button)(({ theme }) => ({
 
 const MainDiv = styled("div")(({ theme }) => ({
   [theme.breakpoints.up("md")]: {
-    marginLeft: "35%",
+    
   },
   [theme.breakpoints.only("820")]: {
-    marginLeft: "40%",
-    marginTop: 300,
   },
   [theme.breakpoints.down("md")]: {
-    marginLeft: "15%",
-    marginTop: 320,
   },
 }));
 
@@ -92,8 +88,8 @@ export default function Upload() {
     <MainDiv>
       <div className="contaminent">
         {res === null ? (
-          <div className="cards">
-            <Card variant="outlined" sx={{ maxWidth: "35%", p: 2 }}>
+          <div className="cards" style={{marginLeft:"20%",marginRight:"20%"}}>
+            <Card variant="outlined" sx={{ maxWidth: "100%", p: 2 }}>
               <Box>
                 <Typography
                   align="center"
